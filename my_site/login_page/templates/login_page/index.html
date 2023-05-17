@@ -1,0 +1,21 @@
+{% load socialaccount %}
+<html>
+  <head>
+    <title>หน้าการเข้าเพื่อยืนยันตัวตน</title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+        <h1>ยินดีตอนรับคุณ, {{ user.username }} !</h1> 
+        <a href="{% url 'account_logout' %}"> LOGOUT </a>
+
+    {% else %}
+        <h1>หน้ายืนยันตัวตน</h1>
+        <button onclick="document.location='{% provider_login_url 'google' %}'">
+            Login with Google
+        </button>
+    {% endif %}
+
+    {{ user.email }}
+    {{ user.description }}
+  </body>
+</html>
